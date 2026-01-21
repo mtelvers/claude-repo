@@ -48,3 +48,6 @@ build: [
   ]
 ]
 dev-repo: "git+https://github.com/mtelvers/ocaml-smtpd.git"
+url {
+  src: "git+https://github.com/mtelvers/ocaml-smtpd.git"
+}

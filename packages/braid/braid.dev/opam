@@ -40,3 +40,6 @@ build: [
   ]
 ]
 dev-repo: "git+https://github.com/mtelvers/braid.git"
+url {
+  src: "git+https://github.com/mtelvers/braid.git"
+}
