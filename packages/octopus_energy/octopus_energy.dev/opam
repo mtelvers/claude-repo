@@ -41,5 +41,5 @@ build: [
 dev-repo: "git+https://github.com/mtelvers/ocaml-octopus-energy.git"
 
 url {
-  src: "git+https://github.com/mtelvers/ocaml-octopus-energy#e9fc02ab7ab4b50d909d68dc0e9052ce9e67d65c"
+  src: "git+https://github.com/mtelvers/ocaml-octopus-energy#5226e89df2cb819edda470174f7cd3f335c102bf"
 }
