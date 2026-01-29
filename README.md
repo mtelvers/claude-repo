@@ -6,9 +6,13 @@ A test opam overlay repository for use with [braid](https://github.com/mtelvers/
 
 | Package | Description |
 |---------|-------------|
+| `braid.0.1.0` | Build status tracker for opam overlay repositories |
 | `braid.dev` | Build status tracker for opam overlay repositories |
-| `imapd.dev` | IMAP4rev2 server (RFC 9051) with EIO and PAM authentication |
-| `smtpd.dev` | SMTP server (RFC 5321) with STARTTLS, DKIM, SPF, DMARC support |
+| `imapd.dev` | IMAP4rev2 server implemented in OCaml with EIO |
+| `jpeg.dev` | Pure OCaml JPEG library |
+| `ocaml-slurm.dev` | OCaml client library for Slurm REST API |
+| `octopus_energy.dev` | OCaml library and CLI for Octopus Energy API |
+| `smtpd.dev` | An SMTP server implemented in OCaml |
 
 ## Usage
 
