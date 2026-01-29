@@ -41,5 +41,5 @@ build: [
 dev-repo: "git+https://github.com/mtelvers/braid.git"
 
 url {
-  src: "git+https://github.com/mtelvers/braid#20ed263a5ebfee5c67d2241980c3e68b26857ddc"
+  src: "git+https://github.com/mtelvers/braid#3e23ff4973c1e76c8c483a2d092ac18fc237659d"
 }
