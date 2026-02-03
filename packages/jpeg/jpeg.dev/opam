@@ -32,5 +32,5 @@ build: [
 dev-repo: "git+https://github.com/mtelvers/ocaml-jpeg.git"
 
 url {
-  src: "git+https://github.com/mtelvers/ocaml-jpeg#8aebd4a45d7b5a61abba1190cb34b164d5fad95b"
+  src: "git+https://github.com/mtelvers/ocaml-jpeg#13ad45c3a0f252b3c2cec45500a0ae630a54fe21"
 }
