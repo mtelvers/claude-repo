@@ -41,5 +41,5 @@ build: [
 dev-repo: "git+https://github.com/mtelvers/imapd.git"
 
 url {
-  src: "git+https://github.com/mtelvers/ocaml-imapd#f3d19128c498a50db210b69d1959936336527538"
+  src: "git+https://github.com/mtelvers/ocaml-imapd#90490bb1ae87fc3bc7eef363c48be68c8da7aa1e"
 }
