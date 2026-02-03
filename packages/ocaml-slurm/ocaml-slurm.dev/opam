@@ -39,5 +39,5 @@ dev-repo: "git+https://github.com/mtelvers/ocaml-slurm.git"
 x-maintenance-intent: ["(latest)"]
 
 url {
-  src: "git+https://github.com/mtelvers/ocaml-slurm#0ab28183300b3f584f8af01da422cb793ec1edcf"
+  src: "git+https://github.com/mtelvers/ocaml-slurm#9187c55d2acedff3c12c6bd319bc1a286aa4d9d3"
 }
