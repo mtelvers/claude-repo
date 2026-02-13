@@ -12,6 +12,7 @@ A test opam overlay repository for use with [braid](https://github.com/mtelvers/
 | `jpeg.dev` | Pure OCaml JPEG library |
 | `ocaml-slurm.dev` | OCaml client library for Slurm REST API |
 | `octopus_energy.dev` | OCaml library and CLI for Octopus Energy API |
+| `png.dev` | Pure OCaml PNG library |
 | `smtpd.dev` | An SMTP server implemented in OCaml |
 | `zarr-blosc.0.1.0` | Blosc codec for Zarr - high-performance meta-compressor |
 | `zarr-eio.0.1.0` | Eio-based async store implementations for Zarr |
