@@ -50,5 +50,5 @@ build: [
 dev-repo: "git+https://github.com/mtelvers/ocaml-smtpd.git"
 
 url {
-  src: "git+https://github.com/mtelvers/ocaml-smtpd#9ed562aee135bbd28810e3f7435f83e5c8b003de"
+  src: "git+https://github.com/mtelvers/ocaml-smtpd#b43ecfa117b0a1fce84d97a51e215b87d60d91b2"
 }
