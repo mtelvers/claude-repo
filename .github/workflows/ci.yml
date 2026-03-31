@@ -19,6 +19,14 @@ jobs:
           repository: ocaml/opam-repository
           path: opam-repository
 
+      - name: Install day10
+        run: |
+          git clone https://github.com/mtelvers/day10 /tmp/day10
+          cd /tmp/day10
+          opam install . --deps-only -y
+          dune build @install
+          sudo cp _build/install/default/bin/day10 /usr/local/bin/
+
       - name: List packages
         run: |
           day10 list \
