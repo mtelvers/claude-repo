@@ -10,6 +10,9 @@ jobs:
   build:
     runs-on: [self-hosted, linux, x64, day10]
     steps:
+      - name: Mark workspace as safe for git
+        run: git config --global --add safe.directory '*'
+
       - name: Checkout claude-repo
         uses: actions/checkout@v4
 
@@ -44,6 +47,7 @@ jobs:
             --os-distribution ubuntu --os-family debian --os-version 24.04 \
             --json results \
             --dry-run \
+            --fork 256 \
             @packages.json
 
       - name: Build packages
