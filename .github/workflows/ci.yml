@@ -3,8 +3,7 @@ name: CI Build
 on:
   push:
     branches: [main]
-  pull_request:
-    branches: [main]
+  merge_group:
 
 jobs:
   build:
@@ -84,6 +83,7 @@ jobs:
             @packages.json
 
       - name: Generate summary
+        id: summary
         if: always()
         run: |
           echo "## Build Results" >> $GITHUB_STEP_SUMMARY
@@ -130,12 +130,12 @@ jobs:
           fi
 
           # Diff against previous results
+          newly_broken=""
           if ls previous-results/*.json 1>/dev/null 2>&1; then
             echo "## Changes from previous run" >> $GITHUB_STEP_SUMMARY
             echo "" >> $GITHUB_STEP_SUMMARY
 
             newly_fixed=""
-            newly_broken=""
             newly_added=""
             newly_removed=""
 
@@ -199,6 +199,14 @@ jobs:
             fi
           fi
 
+          # Export regression info for the gate step
+          if [ -n "$newly_broken" ]; then
+            echo "has_regressions=true" >> $GITHUB_OUTPUT
+            echo -e "$newly_broken" > /tmp/regressions.txt
+          else
+            echo "has_regressions=false" >> $GITHUB_OUTPUT
+          fi
+
           if [ "$success" -gt 0 ]; then
             echo "<details><summary>Successful packages ($success)</summary>" >> $GITHUB_STEP_SUMMARY
             echo "" >> $GITHUB_STEP_SUMMARY
@@ -213,6 +221,13 @@ jobs:
             echo "" >> $GITHUB_STEP_SUMMARY
             echo "</details>" >> $GITHUB_STEP_SUMMARY
           fi
+
+      - name: Check for regressions
+        if: github.event_name == 'merge_group' && steps.summary.outputs.has_regressions == 'true'
+        run: |
+          echo "::error::Regressions detected - the following packages broke:"
+          cat /tmp/regressions.txt
+          exit 1
 
       - name: Upload results
         if: always()
