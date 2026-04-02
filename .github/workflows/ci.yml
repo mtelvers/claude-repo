@@ -10,6 +10,9 @@ jobs:
   build:
     runs-on: [self-hosted, linux, x64, day10]
     steps:
+      - name: Install dependencies
+        run: sudo apt-get update && sudo apt-get install -y gh jq unzip
+
       - name: Mark workspace as safe for git
         run: git config --global --add safe.directory '*'
 
@@ -25,35 +28,17 @@ jobs:
       - name: Download previous results
         continue-on-error: true
         env:
-          GITHUB_TOKEN: ${{ github.token }}
+          GH_TOKEN: ${{ github.token }}
         run: |
           mkdir -p previous-results
-          API="https://api.github.com/repos/${{ github.repository }}"
-          AUTH="Authorization: Bearer $GITHUB_TOKEN"
-
-          # Find the most recent completed run (excluding current)
-          run_id=$(curl -sf -H "$AUTH" \
-            "$API/actions/runs?branch=main&status=completed&per_page=5" \
-            | jq "[.workflow_runs[] | select(.id != ${{ github.run_id }})][0].id // empty")
-
-          if [ -n "$run_id" ] && [ "$run_id" != "null" ]; then
-            echo "Found previous run: $run_id"
-            # Find the build-results artifact
-            artifact_id=$(curl -sf -H "$AUTH" \
-              "$API/actions/runs/$run_id/artifacts" \
-              | jq '.artifacts[] | select(.name == "build-results") | .id // empty')
-
-            if [ -n "$artifact_id" ] && [ "$artifact_id" != "null" ]; then
-              echo "Downloading artifact $artifact_id"
-              curl -sfL -H "$AUTH" \
-                "$API/actions/artifacts/$artifact_id/zip" \
-                -o /tmp/previous-results.zip
-              unzip -qo /tmp/previous-results.zip -d previous-results
-              rm -f /tmp/previous-results.zip
-              echo "Downloaded $(ls previous-results/*.json 2>/dev/null | wc -l) result files"
-            else
-              echo "No build-results artifact found"
-            fi
+          run_id=$(gh run list --repo ${{ github.repository }} \
+            --branch main --workflow "CI Build" --status completed \
+            --json databaseId --jq "[.[] | select(.databaseId != ${{ github.run_id }})][0].databaseId // empty")
+          if [ -n "$run_id" ]; then
+            echo "Downloading results from run $run_id"
+            gh run download "$run_id" --repo ${{ github.repository }} \
+              --name build-results --dir previous-results
+            echo "Downloaded $(ls previous-results/*.json 2>/dev/null | wc -l) result files"
           else
             echo "No previous run found"
           fi
