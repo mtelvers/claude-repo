@@ -18,6 +18,7 @@ A test opam overlay repository for use with [braid](https://github.com/mtelvers/
 | `smtpd.dev` | An SMTP server implemented in OCaml |
 | `solver-service-api.dev` | Cap'n Proto API for the solver service |
 | `solver-service.dev` | Choose package versions to test |
+| `solver-worker.dev` | OCluster worker that can solve opam constraints |
 | `tailwindcss.dev` | TailwindCSS prebuild command line on opam |
 | `wav.dev` | Pure OCaml WAV (RIFF/WAVE) audio file reader and writer |
 | `zarr-blosc.0.1.0` | Blosc codec for Zarr - high-performance meta-compressor |
