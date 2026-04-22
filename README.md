@@ -8,6 +8,8 @@ A test opam overlay repository for use with [braid](https://github.com/mtelvers/
 |---------|-------------|
 | `braid.0.1.0` | Build status tracker for opam overlay repositories |
 | `braid.dev` | Build status tracker for opam overlay repositories |
+| `dream-encoding.dev` | Encoding primitives for Dream |
+| `hilite.dev` | Build time syntax highlighting |
 | `imapd.dev` | IMAP4rev2 server implemented in OCaml with EIO |
 | `jpeg.dev` | Pure OCaml JPEG library |
 | `mp3.dev` | Pure OCaml MPEG-1/2/2.5 Audio Layer I/II/III encoder and decoder |
