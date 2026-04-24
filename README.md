@@ -1,6 +1,43 @@
-# claude-repo
+# opam-repository-overlay
 
-A test opam overlay repository for use with [braid](https://github.com/mtelvers/braid) merge-test.
+An opam overlay providing packages that are not (yet) in the main
+[opam-repository](https://github.com/ocaml/opam-repository), continuously
+tested against the upstream repository via GitHub Actions.
+
+## Continuous build testing
+
+Every push, pull request, and merge-queue entry triggers a full build of every
+package in this overlay on self-hosted runners, using
+[`day10`](https://github.com/mtelvers/day10) for cached, containerised opam
+dependency resolution.
+
+- **Solve, then build.** Packages are first filtered by dependency solvability
+  (`day10 health-check --dry-run`), then the solvable set is built for real.
+- **Regression gate.** Each run is compared against the previous successful run
+  on `main`. A package that went from `success` to any failure state blocks
+  the merge queue, so broken changes cannot land.
+- **Rich step summaries.** Every run publishes success/failure counts, the
+  tail of each failing build log, and a diff against the previous run (newly
+  broken, newly fixed, newly added, removed).
+
+See [`.github/workflows/ci.yml`](.github/workflows/ci.yml) for the full pipeline.
+
+## Using as an opam overlay
+
+Add this repository as a higher-priority overlay on top of your existing opam
+repositories:
+
+```bash
+opam repository add tunbury-overlay https://github.com/tunbury/opam-repository-overlay.git
+opam update
+```
+
+Packages in this overlay take precedence over those in
+`ocaml/opam-repository`. To remove it:
+
+```bash
+opam repository remove tunbury-overlay
+```
 
 ## Packages
 
@@ -14,7 +51,7 @@ A test opam overlay repository for use with [braid](https://github.com/mtelvers/
 | `conf-onnxruntime.1` | Virtual package relying on an ONNX Runtime system installation |
 | `day10-tui.dev` | Terminal UI for browsing CI build results from GitHub Actions |
 | `dream-encoding.dev` | Encoding primitives for Dream |
-| `embeddings-size.0.1.0` | synopsis: |
+| `embeddings-size.0.1.0` | Calculate total size of Tessera embeddings for a geographic region |
 | `gdal.0.1.0` | OCaml bindings to GDAL's raster C API |
 | `hilite.dev` | Build time syntax highlighting |
 | `imapd.dev` | IMAP4rev2 server implemented in OCaml with EIO |
@@ -46,36 +83,14 @@ A test opam overlay repository for use with [braid](https://github.com/mtelvers/
 | `zarr-sync.0.1.0` | Synchronous store implementations for Zarr |
 | `zarr.0.1.0` | Pure OCaml implementation of Zarr v3 |
 
-## Usage
-
-Test this overlay with braid:
-
-```bash
-# Quick dependency check
-braid merge-test /path/to/claude-repo --dry-run -o results
-
-# Full build test
-braid merge-test /path/to/claude-repo -o results
-
-# Stack with another overlay (claude-repo has higher priority)
-braid merge-test /path/to/claude-repo /path/to/other-overlay -o results
-```
-
 ## Repository Structure
 
 ```
-claude-repo/
+opam-repository-overlay/
 ├── repo                              # opam repository metadata
-└── packages/
-    ├── braid/braid.dev/opam
-    ├── imapd/imapd.dev/opam
-    └── smtpd/smtpd.dev/opam
-```
-
-## Adding as an opam Repository
-
-```bash
-opam repository add claude-repo https://github.com/mtelvers/claude-repo.git
+├── packages/                         # one subdirectory per package
+│   └── <package>/<package>.<version>/opam
+└── .github/workflows/ci.yml          # regression-gated build matrix
 ```
 
 ## License
