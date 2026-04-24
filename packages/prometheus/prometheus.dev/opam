@@ -7,12 +7,11 @@ homepage: "https://github.com/mirage/prometheus"
 doc: "https://mirage.github.io/prometheus/"
 bug-reports: "https://github.com/mirage/prometheus/issues"
 depends: [
-  "ocaml" {>= "4.01.0"}
+  "ocaml" {>= "5.0"}
   "dune" {>= "2.3"}
   "astring"
   "asetmap"
   "re"
-  "lwt" {>= "2.5.0"}
 ]
 build: [
   ["dune" "build" "-p" name "-j" jobs]
@@ -30,5 +29,5 @@ It can also be used to send alerts if a service is down or behaving poorly.
 """
 
 url {
-  src: "git+https://github.com/mtelvers/prometheus.git#eda9d4ab01f9c9b67a64d34cc07553d304fbb5fd"
+  src: "git+https://github.com/mtelvers/prometheus.git#b29c639f898c0811f8870fd6f099826f0ab9b0f3"
 }

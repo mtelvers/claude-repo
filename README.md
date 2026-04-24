@@ -19,7 +19,7 @@ A test opam overlay repository for use with [braid](https://github.com/mtelvers/
 | `octopus_energy.dev` | OCaml library and CLI for Octopus Energy API |
 | `opam-hub.0.1.0` | Gated opam overlay repository server |
 | `png.dev` | Pure OCaml PNG library |
-| `prometheus-app.dev` | Client library for Prometheus monitoring |
+| `prometheus-app.dev` | Report metrics for Prometheus using Cohttp and Eio |
 | `prometheus.dev` | Client library for Prometheus monitoring |
 | `repo_tool.dev` | Generate opam repository from git repositories |
 | `smtpd.dev` | An SMTP server implemented in OCaml |
