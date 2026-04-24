@@ -14,6 +14,7 @@ A test opam overlay repository for use with [braid](https://github.com/mtelvers/
 | `conf-onnxruntime.1` | Virtual package relying on an ONNX Runtime system installation |
 | `dpixel.dev` | Tessera dpixel tool in OCaml |
 | `dream-encoding.dev` | Encoding primitives for Dream |
+| `embeddings-size.0.1.0` | synopsis: |
 | `gdal.0.1.0` | OCaml bindings to GDAL's raster C API |
 | `hilite.dev` | Build time syntax highlighting |
 | `imapd.dev` | IMAP4rev2 server implemented in OCaml with EIO |
