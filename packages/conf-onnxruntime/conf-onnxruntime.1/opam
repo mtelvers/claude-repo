@@ -1,0 +1,47 @@
+opam-version: "2.0"
+synopsis: "Virtual package relying on an ONNX Runtime system installation"
+description:
+  "This package can only install if the ONNX Runtime C/C++ library is installed on the system. On Debian and Ubuntu the official prebuilt release tarball is downloaded from Microsoft's GitHub and installed under /usr/local."
+maintainer: ["Mark Elvers <mark@tarides.com>"]
+authors: ["Mark Elvers <mark@tarides.com>"]
+license: "MIT"
+homepage: "https://onnxruntime.ai/"
+bug-reports: "https://github.com/mtelvers/ocaml-onnxruntime/issues"
+build: [
+  ["sh" "-exc" """
+    set -eu
+    sudo apt-get install -y -V ca-certificates wget
+    version=1.24.1
+    case $(uname -m) in
+      x86_64)  arch=x64 ;;
+      aarch64) arch=aarch64 ;;
+      *) echo "Unsupported arch: $(uname -m)"; exit 1 ;;
+    esac
+    tgz=onnxruntime-linux-${arch}-${version}.tgz
+    wget -q https://github.com/microsoft/onnxruntime/releases/download/v${version}/${tgz}
+    tar -xzf ${tgz}
+    sudo cp -r onnxruntime-linux-${arch}-${version}/include/. /usr/local/include/
+    sudo cp -r onnxruntime-linux-${arch}-${version}/lib/.     /usr/local/lib/
+    sudo ldconfig
+    rm -rf ${tgz} onnxruntime-linux-${arch}-${version}
+    pkg-config --exists libonnxruntime
+  """] {os-family = "debian" | os-family = "ubuntu"}
+  ["pkg-config" "--exists" "libonnxruntime"]
+    {os != "macos" & os != "win32" & os-family != "debian" & os-family != "ubuntu"}
+  ["sh" "-exc"
+   "export PKG_CONFIG_PATH=\"$(brew --prefix onnxruntime)/lib/pkgconfig:$PKG_CONFIG_PATH\"; pkg-config --exists libonnxruntime"]
+    {os = "macos" & os-distribution = "homebrew"}
+]
+depends: [
+  "conf-pkg-config" {build}
+]
+depexts: [
+  ["onnxruntime-devel"] {os-family = "fedora"}
+  ["onnxruntime-devel"] {os-family = "suse" | os-family = "opensuse"}
+  ["onnxruntime-dev"] {os-distribution = "alpine"}
+  ["onnxruntime"] {os-distribution = "homebrew" & os = "macos"}
+  ["onnxruntime"] {os = "freebsd"}
+  ["onnxruntime"] {os-family = "arch"}
+]
+flags: conf
+x-maintenance-intent: ["(latest)"]

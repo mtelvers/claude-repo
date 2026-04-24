@@ -10,6 +10,7 @@ A test opam overlay repository for use with [braid](https://github.com/mtelvers/
 | `braid.0.1.0` | Build status tracker for opam overlay repositories |
 | `braid.dev` | Build status tracker for opam overlay repositories |
 | `conf-arrow.1` | Virtual package relying on an Apache Arrow system installation |
+| `conf-onnxruntime.1` | Virtual package relying on an ONNX Runtime system installation |
 | `dream-encoding.dev` | Encoding primitives for Dream |
 | `gdal.0.1.0` | OCaml bindings to GDAL's raster C API |
 | `hilite.dev` | Build time syntax highlighting |
