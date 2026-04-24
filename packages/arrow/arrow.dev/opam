@@ -15,6 +15,7 @@ depends: [
   "ctypes-foreign"
   "dune-configurator"
   "ptime"
+  "conf-arrow"
   "alcotest" {with-test}
   "odoc" {with-doc}
 ]
@@ -36,5 +37,5 @@ dev-repo: "git+https://github.com/mtelvers/arrow.git"
 x-maintenance-intent: ["(latest)"]
 
 url {
-  src: "git+https://github.com/mtelvers/arrow#c7db3706a55922c1972efbd76320b790a5f5d5bb"
+  src: "git+https://github.com/mtelvers/arrow#0630cc3b0d57b07a7b985cdb0816cc4fe607ad7e"
 }
