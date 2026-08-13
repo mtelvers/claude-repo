@@ -1,11 +1,12 @@
 opam-version: "2.0"
 name: "gdal"
-synopsis: "OCaml bindings to GDAL's raster C API"
+synopsis: "OCaml bindings to GDAL's raster and vector C APIs"
 depends: [
   "ocaml" {>= "4.14.0"}
   "dune" {>= "3.0"}
   "ctypes" {>= "0.20.0"}
   "ctypes-foreign" {>= "0.20.0"}
+  "alcotest" {with-test}
   "conf-gdal"
 ]
 build: [
@@ -13,5 +14,5 @@ build: [
 ]
 
 url {
-  src: "git+https://github.com/mtelvers/ocaml-gdal#013b669d7e7b1307ac3773573c0cd4c031ccae2f"
+  src: "git+https://github.com/mtelvers/ocaml-gdal#5dae76f93e91b8d7a1a27ea5f379ade59d42be9d"
 }

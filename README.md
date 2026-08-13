@@ -63,7 +63,7 @@ opam repository remove tunbury-overlay
 | `day10-tui.dev` | Terminal UI for browsing CI build results from GitHub Actions |
 | `dream-encoding.dev` | Encoding primitives for Dream |
 | `embeddings-size.0.1.0` | Calculate total size of Tessera embeddings for a geographic region |
-| `gdal.0.1.0` | OCaml bindings to GDAL's raster C API |
+| `gdal.0.1.0` | OCaml bindings to GDAL's raster and vector C APIs |
 | `hilite.dev` | Build time syntax highlighting |
 | `imapd.dev` | IMAP4rev2 server implemented in OCaml with EIO |
 | `jpeg.dev` | Pure OCaml JPEG library |
