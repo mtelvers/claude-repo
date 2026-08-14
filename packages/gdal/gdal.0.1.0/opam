@@ -14,5 +14,5 @@ build: [
 ]
 
 url {
-  src: "git+https://github.com/mtelvers/ocaml-gdal#5dae76f93e91b8d7a1a27ea5f379ade59d42be9d"
+  src: "git+https://github.com/mtelvers/ocaml-gdal#3a9c36265a13bd637cf1a5edef2edca471f216ce"
 }
