@@ -23,5 +23,5 @@ build: [
 ]
 
 url {
-  src: "git+https://github.com/mtelvers/tessera-tiles.git#a7c47e9a943cb01b845b63aa43869cb88969ee55"
+  src: "git+https://github.com/mtelvers/tessera-tiles.git#82c0f0dd9b155a36018f6190f811599c9fad6891"
 }
