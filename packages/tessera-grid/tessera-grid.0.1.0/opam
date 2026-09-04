@@ -1,0 +1,27 @@
+opam-version: "2.0"
+name: "tessera-grid"
+synopsis: "The Tessera fixed-degree tile grid: cells, naming, ROI selection, Zarr shard order"
+description: """
+The grid model shared by tessera-tiles and genesis: grid_<lon>_<lat> cell
+naming and parsing at any degree step, the shared-area rule that decides
+which cells a polygon covers, hole filling, .tiles list reading and writing,
+and the WGS84->UTM projection behind geotessera's Zarr shard order. Stdlib
+only, so either consumer can depend on it without pulling in GDAL.
+"""
+maintainer: "Mark Elvers <mark.elvers@tunbury.org>"
+authors: "Mark Elvers <mark.elvers@tunbury.org>"
+homepage: "https://github.com/mtelvers/tessera-tiles"
+bug-reports: "https://github.com/mtelvers/tessera-tiles/issues"
+dev-repo: "git+https://github.com/mtelvers/tessera-tiles.git"
+depends: [
+  "ocaml" {>= "4.14.0"}
+  "dune" {>= "3.0"}
+]
+build: [
+  ["dune" "build" "-p" name "-j" jobs]
+  ["dune" "runtest" "-p" name "-j" jobs] {with-test}
+]
+
+url {
+  src: "git+https://github.com/mtelvers/tessera-tiles.git#a7c47e9a943cb01b845b63aa43869cb88969ee55"
+}

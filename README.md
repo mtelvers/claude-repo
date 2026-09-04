@@ -91,8 +91,10 @@ opam repository remove tunbury-overlay
 | `stac_server.dev` | GeoTessera STAC API server and sync tool |
 | `tailwindcss.dev` | TailwindCSS prebuild command line on opam |
 | `tessera-dpixel.dev` | Tessera dpixel tool in OCaml |
+| `tessera-grid.0.1.0` | The Tessera fixed-degree tile grid: cells, naming, ROI selection, Zarr shard order |
 | `tessera-mosaic.dev` | Geo-correct mosaic of Tessera 0.1-degree embedding tiles |
 | `tessera-pipeline.dev` | Tessera Pipeline in OCaml |
+| `tessera-tiles.0.1.0` | Convert a vector ROI into a list of fixed-degree grid tiles |
 | `tiff.dev` | Pure OCaml TIFF/GeoTIFF library |
 | `wav.dev` | Pure OCaml WAV (RIFF/WAVE) audio file reader and writer |
 | `zarr-blosc.0.1.0` | Blosc codec for Zarr - high-performance meta-compressor |

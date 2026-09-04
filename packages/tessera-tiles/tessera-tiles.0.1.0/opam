@@ -1,0 +1,27 @@
+opam-version: "2.0"
+name: "tessera-tiles"
+synopsis: "Convert a vector ROI into a list of fixed-degree grid tiles"
+description: """
+Reads a region of interest from any OGR-readable source -- an ESRI shapefile,
+a zipped shapefile bundle, GeoJSON, GeoPackage -- reprojects it to WGS84, and
+enumerates the grid cells it covers as a .tiles list of grid_<lon>_<lat>
+names.
+"""
+depends: [
+  "ocaml" {>= "4.14.0"}
+  "dune" {>= "3.0"}
+  "cmdliner" {>= "1.1.0"}
+  "tessera-grid" {= version}
+  # The local OCaml GDAL bindings (github.com/mtelvers/ocaml-gdal), which
+  # provide the vector API this tool reads geometry with. Pinned exactly:
+  # the name collides with hcarty's unrelated ocaml-gdal in the main opam
+  # repository, whose higher version number would otherwise win.
+  "gdal" {= "0.1.0"}
+]
+build: [
+  ["dune" "build" "-p" name "-j" jobs]
+]
+
+url {
+  src: "git+https://github.com/mtelvers/tessera-tiles.git#a7c47e9a943cb01b845b63aa43869cb88969ee55"
+}
